@@ -1,0 +1,142 @@
+\documentclass[msc, a4paper, 12pt]{ppgccufmg} 
+
+\usepackage[english]{babel}
+%\usepackage[brazil]{babel}
+\usepackage{type1ec}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref} 
+\usepackage{rotating}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,bm,bbm, dsfont}
+\usepackage{natbib}
+\usepackage{todonotes}
+\usepackage{setspace}
+\usepackage{lipsum}
+\usepackage{xcolor} 
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{color}
+\usepackage{multicol,multirow}
+%\usepackage{subfig}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage[binary-units]{siunitx}
+\usepackage[linesnumbered,lined,boxed]{algorithm2e}
+\usepackage{algorithmicx, algpseudocode}
+\usepackage{booktabs}
+\usepackage{scalerel}
+\usepackage{enumitem}
+\usepackage{undertilde}
+\usepackage[labelsep=period]{caption}  
+
+\DeclareSIUnit{\minusalphapercent}{(1-\alpha)\%}
+\DeclareSIUnit{\alphapercent}{\alpha\%}
+
+\newcommand{\Mycite}[1]{%
+ (\citeauthor{#1},~\citeyear{#1})}
+
+%\selectlanguage{brazil}
+
+\usetikzlibrary{svg.path}
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+	orcidlogo/.pic={
+		\fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+		\fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+		svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+		svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+	}
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+				\begin{tikzpicture}[yscale=-1,transform shape]
+				\pic{orcidlogo};
+				\end{tikzpicture}
+			}{|}}}}
+
+
+\renewcommand{\Bbb}{\mathbb}
+
+\newdimen\HilbertLastX
+\newdimen\HilbertLastY
+\newcounter{HilbertOrder}
+
+\def\DrawToNext#1#2{%
+	\advance \HilbertLastX by #1
+	\advance \HilbertLastY by #2
+	\pgfpathlineto{\pgfqpoint{\HilbertLastX}{\HilbertLastY}}
+}
+
+\def\Hilbert[#1,#2,#3,#4,#5,#6,#7,#8] {
+	\ifnum\value{HilbertOrder} > 0%
+	\addtocounter{HilbertOrder}{-1}
+	\Hilbert[#5,#6,#7,#8,#1,#2,#3,#4]
+	\DrawToNext {#1} {#2}
+	\Hilbert[#1,#2,#3,#4,#5,#6,#7,#8]
+	\DrawToNext {#5} {#6}
+	\Hilbert[#1,#2,#3,#4,#5,#6,#7,#8]
+	\DrawToNext {#3} {#4}
+	\Hilbert[#7,#8,#5,#6,#3,#4,#1,#2]
+	\addtocounter{HilbertOrder}{1}
+	\fi
+}
+
+% \hilbert((x,y),order)
+\def\hilbert((#1,#2),#3){%
+	\advance \HilbertLastX by #1
+	\advance \HilbertLastY by #2
+	\pgfpathmoveto{\pgfqpoint{\HilbertLastX}{\HilbertLastY}}
+	\setcounter{HilbertOrder}{#3}
+	\Hilbert[1mm,0mm,-1mm,0mm,0mm,1mm,0mm,-1mm]
+	\pgfusepath{stroke}%
+}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+
+\ppgccufmg{
+ title = {Contributions to the Study of Time Series and Images with the Entropy-Complexity Plane},
+ authorrev = {Caetano Chagas, Eduarda Tatiane},
+ cutter = {D1234p},
+ cdu = {519.6*82.10},
+ university = {Federal University of Minas Gerais},
+ course = {Computer Science},
+ address = {Belo Horizonte},
+ date = {2021-03},
+ advisor = {Heitor Soares Ramos Filho},
+ coadvisor = {Alejandro Cesar Frery Orgambide},
+ abstract = {Resumo}{./intro_tex/abs_por},
+ abstract = [english]{Abstract}{./intro_tex/abs_eng},
+ %approval = {img/approvalsheet.eps},
+ dedication = {./intro_tex/dedication},
+ ack = {./intro_tex/acks},
+ keywords={Séries Temporais, Padrões ordinais, Teoria da Informação},
+ epigraphtext={Não há alegria mais intensa que a de encontrar um fato que não pode ser entendido nos termos das ideias atualmente aceitas}{Cecilia Payne-Gaposchkin},
+  indexkeys={1.~Computação --- Teses. 2.~Redes --- Teses. I.~Orientador.
+    II.~Título.},
+}
+
+
+\include{Chapters/Introduction}
+\include{Chapters/Bandt-Pompe}
+\include{Chapters/WATG}
+\include{Chapters/SAR}
+\include{Chapters/HCPCA}
+\include{Chapters/ConfidenceRegions}
+\include{Chapters/Conclusion}
+
+\ppgccbibliography{bibfile}
+% apêndices, se houver
+% \begin{appendices}
+% \chapter{Um apêndice}
+% ...conteúdo do apêndice...
+% \end{appendices}
+% % anexos, se houver
+% \begin{attachments}
+% \chapter{Um anexo}
+% \end{attachments}
+\end{document}

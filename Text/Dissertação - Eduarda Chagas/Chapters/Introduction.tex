@@ -1,0 +1,130 @@
+\chapter{Introduction} \label{intro}
+
+\section{Motivation}
+
+%Esta dissertação avança o estado-da-arte\dots
+%Histórico: Bandt-Pompe, Aplicações, identificação de lacunas (os tópicos 3.1 a 3.4)
+
+In the last decades we have dealt with a drastic increase in the number of applications coming from data mining, consequently causing an increase in the diversity and volume of information used.
+With this, the level of complexity of the investigations, the interdisciplinarity and the number of features necessary to carry out such activities were also increased.
+Thus, the study of simple approaches, inexpensive computationally and independent of the type of data for the extraction and characterization of patterns has become fundamental.
+
+One of the fields of study in this area is the application of information theory descriptors.
+The information theory developed by Claude Shannon emerged as an interdisciplinary branch, producing countless results both in the theoretical point of view and in the applications in information extraction in signals, covering in its solutions concepts present in Probability, Statistics and Telecommunications.
+It currently consists of a powerful tool for the quantification of different levels of order and complexity present in the processes that generate the data.
+
+In the context of non-parametric analysis of time series, a new methodology was proposed by~\cite{PermutationEntropyBandtPompe} for data analysis.
+Obtaining a representation of the time series in Bandt-Pompe ordinal patterns, two approaches are currently being applied to acquire a non-parametric probability distribution of the data: the use of frequency histograms or transition graphs.
+When opting for this new representation of the data, the resulting distribution becomes less sensitive to outliers and, as it does not depend on any model, it can be applied to a variety of situations.
+Despite its simplicity, this method is robust to noise and yields good results in assessing the randomness of a sequence, characterization and classification of signals.
+
+
+
+The Bandt-Pompe methodology and its variants have been used successfully in the analysis of many types of dynamics, receiving so far more than \num{1800} citations, according to the Web of Science.
+We found works using this approach in several areas of scientific knowledge such as, for example:
+distinguishing noise from chaos~\citep{rosso2007distinguishing};
+the study of electroencephalography signals using wavelet decomposition~\citep{baravalle2018discriminating,baravalle2018rhythmic};
+description of El Niño/Southern Oscillation during the Holocene~\citep{saco2010entropy};
+the characterization of household appliances through their energy consumption~\citep{CharacterizationElectricLoadInformationTheoryQuantifiers};
+detecting and quantifying stochastic and coherence resonance~\citep{rosso2009detectinga, rosso2009detectingb};
+analysis and characterization of economic time series, e.g., stock market, sovereign bonds, credit rating, commodities, and cryptocurrencies~\citep{zunino2010complexity, zunino2012efficiency, bariviera2013efficiency, bariviera2018analysis, Araujo2019permutation};
+online signature classification and verification~\citep{ClassificationVerificationOnlineHandwrittenSignatures}.
+\cite{InformationTheoryPerspectiveNetworkRobustness} verified the effect of attacks on complex networks by the displacement of points in the $H \times C$ plane.
+\citet{CharacterizationVehicleBehaviorInformationTheory} described vehicles' behavior depending on the topology of cities, and
+\citet{Chagas2020Characterization} succeeded in expanding the use of such techniques for analyzing textured images corrupted by speckle noise.
+\citet{LiborInvisibleHand} identified spurious interventions in the Libor market using the $H\times C$ plane representation.
+\citet{echegoyen2020permutation} were able to discriminate between individuals with mild cognitive impairment from those diagnosed with Alzheimer's disease using magnetoencephalography recordings.
+
+Given the probability distribution of the patterns, each time series is then described by a point in the $\mathbbm R^2$ subinterval, the Complexity-Entropy plane.
+Two points are well known in this plane:
+\begin{enumerate}
+    \item \textbf{White noises}, that is, random sequences without any spatial structure, where the entropy presents its maximum value while the complexity is minimal - we can describe statistically the systems present in such locations of the plane by a random variable taken from some distribution; and
+    \item \textbf{Deterministic data}, that is, sequences with a periodic structure, where entropy and statistical complexity have their minimum values - we can reconstruct the patterns of such data with only a small portion of patterns.
+\end{enumerate}
+
+Through these references, we can characterize time series according to the dynamics of their generation process.
+Studies with different applications have managed to obtain relevant results from time series through information on the nature of the data provided by the $H \times C$ plane.
+Examples include:
+~(i) ~\cite{echegoyen2020permutation} analysis of permutation in magnetoencephalography recordings of individuals suffering from mild cognitive impairment and individuals diagnosed with Alzheimer's disease by trajectories in the $H \times C$ plane,
+~(ii) the study of~\cite{InformationTheoryPerspectiveNetworkRobustness} of the effect of attacks on complex networks by shifting their points on the $H \times C$ plane, and
+~(iii) the description of vehicle behavior based on the topology of cities carried out by \cite{CharacterizationVehicleBehaviorInformationTheory}.
+
+However, we can see from the examples above that Bandt-Pompe symbolization has a wider range of applications for one-dimensional signals, such as time series.
+Thus, it still presents challenges in applications with higher dimensions, such as reducing the loss of spatial correlation between the pixels of an analyzed image.
+
+The aforementioned studies illustrate the importance of the symbolization method in the most diverse areas of knowledge.
+This dissertation works in this context and advances in the state of the art with a focus on investigating the main problems still present in the literature: 
+~(i) the application of the Bandt-Pompe approach in images, 
+%with a specific focus on remote sensing images, 
+~(ii) the absence of amplitude weighting methods in transition graphs of ordinal patterns, and 
+~(iii) the lack of proposals to build confidence regions.
+
+By proposing an expansion of the applicability of Bandt-Pompe in the image context, this work presents a new perspective of extracting texture characteristics from SAR (Synthetic Aperture Radar) images.
+In this way, by linearizing the image samples, we proposed the use of time series analysis tools for a new context: where exists dependence and spatial correlation between the elements.
+
+
+\section{Goals}
+
+The aim of this work is to develop solutions for the main gaps in the Bandt-Pompe symbolization methodology.
+Thus, we propose two solutions: the first proposal to incorporate amplitude information in transition graphs and the first approach to build empirical confidence regions in the Complexity-Entropy plane.
+We started the work by presenting a modification of the traditional transition graphs of ordinal patterns, which when applied to the context of analysis of SAR image textures proved to be the first approach to be able to characterize and classify images with results directly comparable to the techniques present in the state of the art.
+On the other hand, one of the major problems involving the direct use of causal descriptors, Shannon entropy and statistical complexity, for classification activities is the lack of an appropriate distance metric.
+Due to the curvilinear shape of the plane, we verified the need for work focused on building confidence regions and test statistics for such tooling.
+Thus, to minimize the impacts caused by the absence of a specific metric, we propose the HC-PCA.
+Based on this study, we were able to increase the power of characterization of different classes of time series, where as a use case, we present how the proposed approach manages to determine regions of pure randomness present in the plane.
+
+\section{Contributions}
+
+The main contributions of this dissertation work are:
+    
+\begin{itemize}
+    \item[] \textbf{Weighted Amplitude Transition Graph}: We propose the first approach of transition graphs of weighted ordinal patterns using amplitude information of the analyzed sequences.
+    In this way, we were able to reduce the ordinal ambiguity present in transition graphs, thus increasing its characterization power.
+    
+    \item[] \textbf{Analysis and Classification of SAR Textures using Information Theory}: Through WATG, we propose a new representation of SAR textures, which allows a low-dimension characterization useful for, among other applications, its classification.
+    Our approach is robust for rotations and the presence of speckle noise.
+    In addition to perfect separation between urban areas, pastures, ocean and forest, the proposed descriptors are interpretable in terms of the degree and structure of the spatial dependence between the observations.
+    \item[] \textbf{HC-PCA}: We provide the first contribution in the construction of confidence regions in the Complexity-Entropy Plane, and to measure the similarity of new data sequences with the empirical points we propose the construction of a new test statistic.
+    \item[] \textbf{Testing White Noise in the confidence regions}: We present and evaluate a new method of building empirical confidence regions in the Complexity-Entropy plane for analysis of white noise.
+    We were able to capture the random behavior of short sequences of PRNGs already analyzed in the literature and we found that in the scenario presented, our technique is robust to correlation structures.
+\end{itemize}
+
+\section{Publications}
+
+The first year of the master's degree was dedicated to research an extensive literature review work, where a comprehensive study was review focusing on the classification of SAR textures, alternatives for using Bandt-Pompe symbolization in two-dimensional data, and ordinal pattern weighting approaches by amplitude.
+Once have the state-of-the-art, we use the knowledge of several fields of research, such as machine learning, information theory, and graphs to prepare our first proposal, which resulted in some works listed below in chronological order of publication/presentation:
+\begin{itemize}
+    \item WATG: Incorporating amplitude in ordinal pattern decomposition for time series analysis. Poster presentation at Khipu, Nov 2019, Montevideo, Uruguay. Latin American Meeting In Artificial Intelligence, 2019.
+    \item Characterization Of SAR Images With Weighted Amplitude Transition Graphs. 2020 IEEE Latin American GRSS \& ISPRS Remote Sensing Conference (LAGIRS).
+    \item Analysis and Classification of SAR Textures using Information Theory. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (2020).
+    \item An exploratory study of the transition graphs application in different resolutions and polarizations of SAR images. 2021 China International SAR Symposium (CISS). (In writing and submission process).
+\end{itemize}
+During the second year, we plan to focus on developing our proposal for building confidence regions in the Complexity-Entropy plane.
+Although they presented unlivable results, detailed studies were carried out involving the use of classical bi-variate analysis, linear regression, and generalized linear models.
+After defining the methodology, we focus on writing the article below that is currently in the submission process:
+\begin{itemize}
+    \item Confidence Regions for Information-Theoretic Descriptors of Time Series. International Statistical Review.
+\end{itemize}
+A work related to the general area studied was also carried out in collaboration with other researchers:
+\begin{itemize}
+    \item Detecção de eventos no Twitter através de Grafos de visibilidade natural. III Workshop de Computação Urbana. SBC, 2019.
+    \item Supervised Distance Metric learning Encoder with Similarity Space for malware classification through image representation. Computer Networks (Under submission). 
+\end{itemize}
+
+\section{Work Organization}
+
+%The rest of this document is organized as follows.
+%Chapter~\ref{chapter:BP} introduces concepts and definitions of the Bandt-Pompe symbolization process and the Complexity-Entropy plane.
+%In this way, we begin the chapter presenting in the section~\ref{sub:ordinalPatterns} how the ordinal patterns representation is carried out, describing in sections~\ref{sub:rankPermutation} and~\ref{sub:chronological} the permutation modes used and their main differences.
+%The concept of transition graphs is described in section~\ref{sub:OPTG}, where we also analyze its main properties.
+%Then, in section~\ref{sub:InformationTheory} we discussed about the causal descriptors of Information Theory and how the Complexity-Entropy plane is defined.
+
+This document is organized as follows.
+Chapter~\ref{chapter:BP} introduces concepts and definitions of the Bandt-Pompe symbolization process and the Complexity-Entropy plane.
+Chapter~\ref{chapter:WATG} provides an overview of ordinal pattern weighting techniques. 
+We also propose the first algorithm for incorporating amplitude information into transition graphs, the WATG.
+Chapter~\ref{chapter:SARclassification} presents a use case for WATG, providing the experimental results obtained in characterizing and classifying homogeneous textures of SAR images.
+Chapter~\ref{chapter:HCPCA} discusses the state of the art analysis of white noise confidence regions in the plane. 
+Here we also propose the HC-PCA region of empirical confidence and the construction of a specific statistical test.
+Chapter~\ref{chapter:confidenceRegions} presents the main results obtained in our case study with white noise samples.
+Finally, in Chapter~\ref{chapter:conclusion}, we provide our final thoughts, a perspective on this work, and directions for future work.
