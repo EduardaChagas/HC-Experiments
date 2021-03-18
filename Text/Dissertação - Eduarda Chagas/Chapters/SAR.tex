@@ -24,7 +24,7 @@ They provide basilar information, complementary to that offered by sensors that 
 Although they present rich information, such data have challenging characteristics.
 Most notably, they do not follow the usual Gaussian additive model, and the signal-to-noise ratio is usually low.
 
-Yue et al.~\cite{Yue2020Gaussian} provide a comprehensive account of how the physical properties of the target are translated into first- and second-order statistical properties of SAR intensity data.
+\cite{Yue2020Gaussian} provide a comprehensive account of how the physical properties of the target are translated into first- and second-order statistical properties of SAR intensity data.
 There is general agreement that non-deterministic textures are encoded in the second-order features, i.e., in the spatial correlation structure.
 Therefore is frequent the use of covariance matrix and other measures that assume that a linear dependence, namely the Pearson correlation coefficient, suffices to characterize natural textures.
 However, in SAR imagery, texture is often visible only over large areas, and the multiplicative and non-Gaussian nature of speckle antagonizes with the additive assumption that underlies classical approaches, making complex the process of characterizing such data.
@@ -34,7 +34,7 @@ In recent years, handcrafted features and representation learning (supervised an
 Algorithms of the unsupervised generative adversarial network (GAN) have revolutionized the classification of SAR images, improving performance in small sample problems, and helping the interpretability of such data~\cite{liu2019task}.
 Among the supervised algorithms, support vector machine (SVM)~\cite{sukawattanavijit2017ga}, random forest (RF)~\cite{mcnairn2014early}, and neural network (NN)~\cite{lin2017deep} have been frequently used in remote sensing.
 The Principle Component Analysis (PCA)~\cite{ressel2015neural}, autoencoder~\cite{wang2019classification} and the Boltzmann machine~\cite{qin2017object} can to extract non-local resources and classify non-labeled PolSAR pixels using an unsupervised approach.
-However, methods such as graph-based semi-supervised deep learning algorithms~\cite{bi2018graph} can improve classification accuracy in problems with few labeled samples.
+However, methods such as graph-based semi-supervised deep learning algorithms~\citep{bi2018graph} can improve classification accuracy in problems with few labeled samples.
 
 Handcrafted features in SAR textures can be studied following two complementary approaches, namely analyzing the marginal properties of the data (first-order statistics), and observing their spatial structure~\cite{Yue2020Gaussian, numbisi2018multi}.
 In this work, we focus on the second approach, which shows relevant results using techniques from the image processing literature, such as co-occurrence matrices and Haralick's descriptors~\cite{yu2019detection}.
