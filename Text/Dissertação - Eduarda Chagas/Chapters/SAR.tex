@@ -29,24 +29,24 @@ There is general agreement that non-deterministic textures are encoded in the se
 Therefore is frequent the use of covariance matrix and other measures that assume that a linear dependence, namely the Pearson correlation coefficient, suffices to characterize natural textures.
 However, in SAR imagery, texture is often visible only over large areas, and the multiplicative and non-Gaussian nature of speckle antagonizes with the additive assumption that underlies classical approaches, making complex the process of characterizing such data.
 
-Surface classification and land use are among the most critical applications of the Synthetic Aperture Radar (SAR) image~\cite{Pottier2004Unsupervised}.
-In recent years, handcrafted features and representation learning (supervised and unsupervised) algorithms have been proposed~\cite{han2020unsupervised, huang2020classification, xie2020polsar}.
-Algorithms of the unsupervised generative adversarial network (GAN) have revolutionized the classification of SAR images, improving performance in small sample problems, and helping the interpretability of such data~\cite{liu2019task}.
-Among the supervised algorithms, support vector machine (SVM)~\cite{sukawattanavijit2017ga}, random forest (RF)~\cite{mcnairn2014early}, and neural network (NN)~\cite{lin2017deep} have been frequently used in remote sensing.
-The Principle Component Analysis (PCA)~\cite{ressel2015neural}, autoencoder~\cite{wang2019classification} and the Boltzmann machine~\cite{qin2017object} can to extract non-local resources and classify non-labeled PolSAR pixels using an unsupervised approach.
+Surface classification and land use are among the most critical applications of the Synthetic Aperture Radar (SAR) image~\citep{Pottier2004Unsupervised}.
+In recent years, handcrafted features and representation learning (supervised and unsupervised) algorithms have been proposed~\citep{han2020unsupervised, huang2020classification, xie2020polsar}.
+Algorithms of the unsupervised generative adversarial network (GAN) have revolutionized the classification of SAR images, improving performance in small sample problems, and helping the interpretability of such data~\citep{liu2019task}.
+Among the supervised algorithms, support vector machine (SVM)~\citep{sukawattanavijit2017ga}, random forest (RF)~\citep{mcnairn2014early}, and neural network (NN)~\citep{lin2017deep} have been frequently used in remote sensing.
+The Principle Component Analysis (PCA)~\citep{ressel2015neural}, autoencoder~\citep{wang2019classification} and the Boltzmann machine~\citep{qin2017object} can to extract non-local resources and classify non-labeled PolSAR pixels using an unsupervised approach.
 However, methods such as graph-based semi-supervised deep learning algorithms~\citep{bi2018graph} can improve classification accuracy in problems with few labeled samples.
 
-Handcrafted features in SAR textures can be studied following two complementary approaches, namely analyzing the marginal properties of the data (first-order statistics), and observing their spatial structure~\cite{Yue2020Gaussian, numbisi2018multi}.
-In this work, we focus on the second approach, which shows relevant results using techniques from the image processing literature, such as co-occurrence matrices and Haralick's descriptors~\cite{yu2019detection}.
+Handcrafted features in SAR textures can be studied following two complementary approaches, namely analyzing the marginal properties of the data (first-order statistics), and observing their spatial structure~\citep{Yue2020Gaussian, numbisi2018multi}.
+In this work, we focus on the second approach, which shows relevant results using techniques from the image processing literature, such as co-occurrence matrices and Haralick's descriptors~\citep{yu2019detection}.
 Through the gray-level co-occurrence matrices (GLCM), we can extract features that reflect statistical relationships of the pixel intensity values.
 On the other hand, Haralick's descriptors can capture information on intensity and amplitude based on global statistics of SAR images.
-Radford et al.~\cite{radford2018geological} used textural information derived from GLCM, along with Random Forests, for geological mapping of remote and inaccessible localities; the authors obtained a classification accuracy of $\approx\SI{90}{\percent}$, even when using limited training data ($\approx\SI{0.15}{\percent}$ of the total data). 	
-Hagensieker and Waske~\cite{hagensieker2018evaluation} evaluated the synergistic contribution of multi-temporal L-, C-, and X-band data to tropical land cover mapping, comparing classification outcomes of ALOS-2~\cite{kankaku2013alos}, RADARSAT-2~\cite{morena2004introduction}, and TerraSAR-X~\cite{breit2009terrasar} datasets for a study site in the Brazilian Amazon using a wrapper approach. 
+~\cite{radford2018geological} used textural information derived from GLCM, along with Random Forests, for geological mapping of remote and inaccessible localities; the authors obtained a classification accuracy of $\approx\SI{90}{\percent}$, even when using limited training data ($\approx\SI{0.15}{\percent}$ of the total data). 	
+~\cite{hagensieker2018evaluation} evaluated the synergistic contribution of multi-temporal L-, C-, and X-band data to tropical land cover mapping, comparing classification outcomes of ALOS-2~\citep{kankaku2013alos}, RADARSAT-2~\citep{morena2004introduction}, and TerraSAR-X~\citep{breit2009terrasar} datasets for a study site in the Brazilian Amazon using a wrapper approach. 
 The wrapper utilizes the gray-level co-occurrence matrix texture information and a  Random Forest classifier to estimate scene importance. 	
-Storie~\cite{storie2018urban} proposed an open-source workflow for detecting and delineating the urban-rural boundary using Sentinel-1A SAR data.
+~\cite{storie2018urban} proposed an open-source workflow for detecting and delineating the urban-rural boundary using Sentinel-1A SAR data.
 The author used a combination of GLCM information and a k-means classifier to produce a three-category map that distinguishes urban from rural areas. 
 In higher resolution image classification activities, it is necessary to obtain more granular information from the data by extracting local characteristics such as scale and orientation.
-In this scenario, techniques such as Fourier power spectrum~\cite{Florindo2012Fractal}, random fields~\cite{zhu2016antarctic}, Gabor filter~\cite{dumitru2014information} and wavelet transform~\cite{akbarizadeh2012new} are usually applied.
+In this scenario, techniques such as Fourier power spectrum~\citep{Florindo2012Fractal}, random fields~\citep{zhu2016antarctic}, Gabor filter~\citep{dumitru2014information} and wavelet transform~\citep{akbarizadeh2012new} are usually applied.
 
 In our approach, we opt to analyze the \mbox{1-D} signals resulting from the linearization of the image samples, using non-parametric time series analysis techniques.
 With this approach, we reduce the dimensionality of the data while preserving the spatial correlation structure.
@@ -71,10 +71,10 @@ Since the proposed approach has a low computational cost, the results obtained s
 
 We perform a data dimensionality reduction by turning the \mbox{2-D} patch into a \mbox{1-D} signal.
 This could be accomplished by reading the data by lines, columns, or any transformation of \mbox{2-D} indexes into a sequence of integers.
-In this work, we chose to use the Hilbert-Peano~\cite{Lee1994Texture} curve, due to its low computational cost and its ability to preserve relevant properties of pixel spatial correlation.
+In this work, we chose to use the Hilbert-Peano~\citep{Lee1994Texture} curve, due to its low computational cost and its ability to preserve relevant properties of pixel spatial correlation.
 
-Nguyen et al.~\cite{nguyen1982space} firstly employed Space-filling curves, to map texture into a one-dimensional signal.
-Carincotte et al.~\cite{Carincotte2006changeDetection} used the Hilbert-Peano curve in the problem of change detection in pairs of SAR images.
+~\cite{nguyen1982space} firstly employed Space-filling curves, to map texture into a one-dimensional signal.
+~\cite{Carincotte2006changeDetection} used the Hilbert-Peano curve in the problem of change detection in pairs of SAR images.
 The authors noted that this transformation exploits the spatial locality and that its pseudo-randomness
 of direction changes work well for a large family of images, especially
 natural ones.
@@ -162,15 +162,15 @@ These steps are also depicted in Fig.~\ref{fig:WATG}.
 
 We used the HH backscatter magnitudes of three quad-polarimetric L-band SAR images from the NASA Jet Propulsion Laboratory’s (JPL’s) uninhabited aerial vehicle synthetic aperture radar (UAVSAR) sensor with $L=36$ nominal looks:
 \begin{itemize}
-	\item forest and pasture region of Sierra del Lacandón National Park, Guatemala, (acquired on April 10, 2015)\footnote{\protect{\url{https://uavsar.jpl.nasa.gov/cgi-bin/product.pl?jobName=Lacand_30202_15043_006_150410_L090_CX_01\#dados}}}. 
+	\item Forest and pasture region of Sierra del Lacandón National Park, Guatemala, (acquired on April 10, 2015)\footnote{\protect{\url{https://uavsar.jpl.nasa.gov/cgi-bin/product.pl?jobName=Lacand_30202_15043_006_150410_L090_CX_01\#dados}}}. 
 	The image has $8917 \times 3300$ pixels with 
 	\SI[inter-unit-product =$\cdot$]{10}{\meter} $\times$ \SI[inter-unit-product =$\cdot$]{2}{\meter} resolution.
 	%
-	\item ocean regions from Cape Canaveral Ocean (acquired on September 22, 2016).
+	\item Ocean regions from Cape Canaveral Ocean (acquired on September 22, 2016).
 	The image has $7038 \times 3300$ pixels with 
 	\SI[inter-unit-product =$\cdot$]{10}{\meter} $\times$ \SI[inter-unit-product =$\cdot$]{2}{\meter} resolution;
 	%
-	\item urban area of the city of Munich, Germany (acquired on June 5, 2015)\footnote{\protect{\url{https://uavsar.jpl.nasa.gov/cgi-bin/product.pl?jobName=munich_19417_15088_002_150605_L090_CX_01\#data}}}.
+	\item Urban area of the city of Munich, Germany (acquired on June 5, 2015)\footnote{\protect{\url{https://uavsar.jpl.nasa.gov/cgi-bin/product.pl?jobName=munich_19417_15088_002_150605_L090_CX_01\#data}}}.
 	The image has $5773 \times 3300$ pixels with 
 	\SI[inter-unit-product =$\cdot$]{10}{\meter} $\times$ \SI[inter-unit-product =$\cdot$]{3}{\meter} resolution.
 \end{itemize}
@@ -298,7 +298,7 @@ In this way, we were able to obtain, for this experiment, a perfect characteriza
 \subsection{Experiments on sliding window selection}
 
 In this section, we analyze the parameters of the proposed method and its impact on textures classification.
-McCullough et al.~\cite{McCullough2015lagged} report that inadequate values may hinder important characteristics of the phenomenon under analysis.
+~\cite{McCullough2015lagged} report that inadequate values may hinder important characteristics of the phenomenon under analysis.
 The two parameters of the transition graph are the dimension $D$, and the delay $\tau$.
 In the experiments below, we present the results in the classification using different values of these parameters.
 
@@ -340,16 +340,16 @@ The other effect of considering larger values of $ D $ is an increased Entropy o
 
 We present a comparison between our proposal and other methods for texture characterization and classification.
 We use the following ten methods: 
-Gabor filters~\cite{weldon1996efficient},  
-Histogram of oriented gradients (HOG)~\cite{dalal2005histograms},
-Gray-level co-occurrence matrices (GLCM)~\cite{kourgli2012texture}, 
-Speeded-Up Robust Features (SURF)~\cite{bay2006surf},
-Short Time Fourier Transform (STFT)~\cite{portnoff1980time} with SURF,
-Bandt-Pompe probability distribution~\cite{Bandt2002Permutation}, 
-Ordinal patterns transition graphs~\cite{Borges2019Transition},
-Weighted Permutation Entropy (WPE)~\cite{Fadlallah2013Weightedpermutation},
-Fine-Grained Permutation Entropy (FGPE)~\cite{xiao2009fine} with $\alpha = 0.5$, and
-Amplitude-Aware Permutation Entropy (AAPE)~\cite{azami2016amplitude} with $A = 0.5$.
+Gabor filters~\citep{weldon1996efficient},  
+Histogram of oriented gradients (HOG)~\citep{dalal2005histograms},
+Gray-level co-occurrence matrices (GLCM)~\citep{kourgli2012texture}, 
+Speeded-Up Robust Features (SURF)~\citep{bay2006surf},
+Short Time Fourier Transform (STFT)~\citep{portnoff1980time} with SURF,
+Bandt-Pompe probability distribution~\citep{Bandt2002Permutation}, 
+Ordinal patterns transition graphs~\citep{Borges2019Transition},
+Weighted Permutation Entropy (WPE)~\citep{Fadlallah2013Weightedpermutation},
+Fine-Grained Permutation Entropy (FGPE)~\citep{xiao2009fine} with $\alpha = 0.5$, and
+Amplitude-Aware Permutation Entropy (AAPE)~\citep{azami2016amplitude} with $A = 0.5$.
 As in~\cite{guan2019covariance}, 
 we computed four statistics from co-occurrence matrices: contrast, correlation, energy, and homogeneity.
 Likewise, we implemented the Gabor filters in five scales and eight orientations; using the energy, we obtained an $80$-dimensional feature vector for each patch.
@@ -378,7 +378,7 @@ Although the algorithms that have the largest descriptors (Gabor and HOG) do not
 	\label{fig:2DVisualization}
 \end{figure*}
 
-We classified the features using the $k$-nearest neighbor algorithm with Euclidean distance, selecting the value of $k$ with the automatic grid search method of the Caret R package~\cite{kuhn2008building}.
+We classified the features using the $k$-nearest neighbor algorithm with Euclidean distance, selecting the value of $k$ with the automatic grid search method of the Caret R package~\citep{kuhn2008building}.
 For validation, we used $10$-fold cross-validation.
 More details about the classifier and the sampling can be seen in~\cite{mitchell1997machine}.
 
@@ -524,7 +524,7 @@ SURF alone provided a better performance: $\text{AA} = \SI{46.7}{\percent}$,  $\
 HOG and Gabor filters achieved the highest success rates
 among all the handcrafted methods here considered: $\text{AA} = \SI{100}{\percent}$, $\text{F1-score}_\mu = \SI{100}{\percent}$, and $\text{F1-score}_M = \SI{100}{\percent}$.
 However, WATG achieves that same performance using only $2$ features.
-This reduction implies less computational power requirement and avoids the curse of dimensionality~\cite{TheCursesofDimensionality2018}.
+This reduction implies less computational power requirement and avoids the curse of dimensionality~\citep{TheCursesofDimensionality2018}.
 Moreover, the features it is based upon are fully interpretable.
 
 \section{Conclusions}\label{Conclusion}
