@@ -1,7 +1,16 @@
 ### Packages
-require(ggplot2)
-require(ggthemes)
-require(cowplot)
+if(!require(ggplot2)){
+  install.packages("ggplot2")
+  require(ggplot2)
+} 
+if(!require(ggthemes)){
+  install.packages("ggthemes")
+  require(ggthemes)
+} 
+if(!require(cowplot)){
+  install.packages("cowplot")
+  require(cowplot)
+} 
 
 ### Functions
 
@@ -12,7 +21,7 @@ Hhpi <- function(epsilon, D) {
   
  return(
    (upepsilon * log(upepsilon) + umepsilon * log(umepsilon)) / log(u) + (1-2*u)
-        )
+   )
 }
 
 Dhu <- function(epsilon, D) {
@@ -36,10 +45,12 @@ eps3 = seq(0, 1/factorial(3), length=1000)
 eps4 = seq(0, 1/factorial(4), length=1000)
 eps5 = seq(0, 1/factorial(5), length=1000)
 eps6 = seq(0, 1/factorial(6), length=1000)
+
 Hhp3 = Hhpi(eps3, 3)
 Hhp4 = Hhpi(eps4, 4)
 Hhp5 = Hhpi(eps5, 5)
 Hhp6 = Hhpi(eps6, 6)
+
 C3 = Hhp3 * Dhu(eps3, 3) / log(3)
 C4 = Hhp4 * Dhu(eps4, 4) / log(4)
 C5 = Hhp5 * Dhu(eps5, 5) / log(5)
