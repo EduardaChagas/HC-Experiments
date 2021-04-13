@@ -152,8 +152,10 @@ The comparison of the red and blue boxes shows that the area has been reduced, t
 Algorithm~\ref{Algo:ConfidenceRegions} provides details on how we obtain the confidence regions, defined by a set of points $\bm P_1, \bm P_2, \bm P_3, \bm P_4$, for each $D\in \mathcal D$, each $T\in \mathcal T$, and each significance level $\alpha$.
 We also obtain the ``emblematic point'' $\bm P'$, a kind of median point in the $H\times C$ plane for each situation.
 
-
-\begin{algorithm}[hbt]
+  \begin{center}
+    \scalebox{0.85}{
+    \begin{minipage}{\linewidth}
+\begin{algorithm}[H]
 	\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
 	\Input{A data base of true random values}
 	\Input{The desired values of embedding dimension $\mathcal D$, sequence length $\mathcal T$, and confidence levels $\mathcal A$}
@@ -199,7 +201,10 @@ We also obtain the ``emblematic point'' $\bm P'$, a kind of median point in the 
 	}
 	\caption{Determination of confidence regions and emblematic time series}
 	\label{Algo:ConfidenceRegions}
-\end{algorithm}
+      \end{algorithm}
+    \end{minipage}%
+    }
+  \end{center}
 
 These confidence regions obtained provide a powerful tool to make binary assessments about the adequacy of a given time series $\bm x$ to the null hypothesis $\mathcal H_0$ that it is white noise.
 More generally, we are interested in obtaining the $p$-value of $\bm x$ under $\mathcal H_0$.
