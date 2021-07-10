@@ -12,7 +12,7 @@ if(!require(combinat)){
   install.packages("combinat")
   require(combinat)
 } 
-source("dataDriven.R")
+#source("dataDriven.R")
 
 # Auxiliar Function -------------------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ define.symbols <- function(D){
 }
 
 FP <- function(n, dimension, delay){
-  dyn.load("FormationPatterns.so")
+  dyn.load("/home/eduarda/Desktop/Codes/HC-Experiments/HC-Experiments/Code/FormationPatterns.so")
   p <- .Call("FormationPatterns", n, dimension, delay)
   p = t(p) + 1
   return(p)
@@ -68,7 +68,7 @@ formationPatternElements <- function(elements, dimension){
 # Bandt-Pompe function ---------------------------------------------------------------------------------
 
 bandt.pompe <- function(series, dimension, delay){
-  dyn.load("BandtPompe.so")
+  dyn.load("/home/eduarda/Desktop/Codes/HC-Experiments/HC-Experiments/Code/BandtPompe.so")
   elements = formationPattern(series, dimension, delay, 1)
   element.size = dim(elements)[1]
   probability <- .Call("BandtPompe", elements, dimension, element.size)
@@ -241,6 +241,27 @@ histogram <- function(series, D, tau = 1){
       labs(x="Patterns", y="Probability") +
       theme_few(base_size = 14, base_family = "serif") 
   return(p)
+}
+
+
+hist.bp <- function(series, D, tau = 1){
+  fat = factorial(D)
+  p.patterns = formationPattern(series, D, tau, 0)
+  n.symbols = dim(p.patterns)[1]
+  symbol = define.symbols(D)
+  index.rep = array(0, n.symbols)
+  for(i in 1:n.symbols){
+    for(j in 1:fat){
+      if(all(p.patterns[i,] == symbol[j, ])){
+        index.rep[i]=j
+        break
+      }
+    }
+  }
+  index.rep = index.rep[1:n.symbols]
+  index.rep = data.frame(i = index.rep)
+  index.rep = as.data.frame(table(index.rep))
+  return(index.rep)
 }
 
 #Calculated tied sequences
