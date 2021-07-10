@@ -76,6 +76,7 @@ bandt.pompe <- function(series, dimension, delay){
 }
 
 bandt.pompe.elements <- function(elements, dimension){
+  #set directory
   dyn.load("BandtPompe.so")
   element.size = dim(elements)[1]
   probability <- .Call("BandtPompe", elements, dimension, element.size)
