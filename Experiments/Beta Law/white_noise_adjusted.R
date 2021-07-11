@@ -30,6 +30,10 @@ for(i in 1:N){
   probs = bandt.pompe(ts, D, tau)
   probs_sort = sort(probs, decreasing = FALSE)
   
+  # Aqui está o problema. As probabilidades ordenadas não são observações;
+  # elas são agregados de observações.
+  # Precisamos calcular estimativas tanto da média amostral quanto da variância amostral
+  
   (meanh <- mean(probs_sort)) # estimativa da média amostral
   (varh <- var(probs_sort)) # estimativa da variância amostral
   
