@@ -2,7 +2,7 @@ require("EnvStats")
 require("goftest")
 
 #setwd("/home/eduarda/Desktop/Codes/HC-Experiments/HC-Experiments/Experiments/Beta Law")
-source('../../Code/Bandt-Pompe.R')
+source('Bandt-Pompe.R')
 
 random_50k <- readBin('random_50k.bin', n = 1e8, size = "4", what = 'integer')
 seq_50k <- abs(random_50k/max(random_50k))
