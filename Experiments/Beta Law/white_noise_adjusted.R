@@ -8,10 +8,6 @@ random_50k <- readBin('random_50k.bin', n = 1e8, size = "4", what = 'integer')
 seq_50k <- abs(random_50k/max(random_50k))
 split_seq <- as.matrix(split(seq_50k, ceiling(seq_along(seq_50k)/50000)))
 
-D = 6
-tau = 1
-N = 100
-
 metrics = data.frame('p' = numeric(length = N),
                      'q' = numeric(length = N),
                      'p_value' = numeric(length = N))
@@ -22,6 +18,13 @@ estBetaParams <- function(mu, varh) {
   beta <- (1 - mu) * v
   return(params = list(alpha = alpha, beta = beta))
 }
+
+D = 6
+tau = 1
+N = 100
+
+n_bins = factorial(D)
+x = seq(1/(2*n_bins), 1-1/(2*n_bins), length.out = n_bins) 
 
 for(i in 1:N){
   cat('i: ', i, ' of ', N, '\n')
@@ -34,14 +37,14 @@ for(i in 1:N){
   # elas são agregados de observações.
   # Precisamos calcular estimativas tanto da média amostral quanto da variância amostral
   
-  (meanh <- mean(probs_sort)) # estimativa da média amostral
-  (varh <- var(probs_sort)) # estimativa da variância amostral
+  mean_h <- sum(x * probs_sort)
+  secm_h <- sum((x*x) * probs_sort)
+  var_h <- secm_h - mean_h^2
+  fit = estBetaParams(mean_h, var_h)
   
-  fit = estBetaParams(meanh, varh)
   metrics$p[i] = fit$alpha
   metrics$q[i] = fit$beta
-  
-  metrics$p_value[i] = ad.test(probs_sort, "pbeta", shape1 = metrics$p[i], shape2 = metrics$q[i], estimated = TRUE)$p.value
+  metrics$p_value[i] = chisq.test(probs_sort, dbeta(x, fit$alpha, fit$beta), simulate.p.value = FALSE)$p.value
 }
 
-write.csv(metrics, 'beta_adjusting.csv')
+write.csv(metrics, '/Results/beta_adjusting.csv')
