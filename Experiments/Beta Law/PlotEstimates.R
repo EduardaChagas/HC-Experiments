@@ -3,6 +3,8 @@ require(ggthemes)
 
 beta_estimates <- data.frame(read_csv("Results/beta_adjusting.csv", 
                                       col_types = cols(X1 = col_skip())))
+summary(beta_estimates[,-3])
+cor(beta_estimates[,-3])
 
 ggplot(beta_estimates, aes(x=p, y=q)) +
   geom_point() +
@@ -20,7 +22,7 @@ ggplot(beta_estimates, aes(x=p, y=q)) +
                    ),
                col="red"
                ) +
-  stat_ellipse(level=.90) +
+  stat_ellipse(level=.90, col="red") +
   xlab(expression(hat(italic(p)))) +
   ylab(expression(hat(italic(q)))) +
   annotate("text", x = 1.085, hjust=0, y = 0.936, 
